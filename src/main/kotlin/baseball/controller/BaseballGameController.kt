@@ -15,9 +15,12 @@ class BaseballGameController(
     fun startGame() {
         outputView.outputGameStartMessage()
         computer.chooseNumbers()
-        val userNumbers = inputNumbers()
-        val matchResult = computer.matchNumbers(userNumbers)
-        outputView.outputMatchResult(matchResult.toString())
+        while (true) {
+            val userNumbers = inputNumbers()
+            val matchResult = computer.matchNumbers(userNumbers)
+            outputView.outputMatchResult(matchResult.toString())
+            if (matchResult.isAllStrike()) break
+        }
     }
 
     private fun inputNumbers(): Numbers {
