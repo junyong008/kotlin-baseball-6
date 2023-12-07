@@ -32,7 +32,7 @@ data class Numbers(private val values: List<Number>) {
 
     companion object {
 
-        private const val SIZE_NUMBERS = 3
+        const val SIZE_NUMBERS = 3
 
         fun createRandomNumbers(): Numbers {
             val numbers = mutableListOf<Number>()

@@ -21,6 +21,7 @@ class BaseballGameController(
             outputView.outputMatchResult(matchResult.toString())
             if (matchResult.isAllStrike()) break
         }
+        outputView.outputGameOverMessage(Numbers.SIZE_NUMBERS)
     }
 
     private fun inputNumbers(): Numbers {
