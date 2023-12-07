@@ -17,6 +17,7 @@ class BaseballGameController(
         computer.chooseNumbers()
         val userNumbers = inputNumbers()
         val matchResult = computer.matchNumbers(userNumbers)
+        outputView.outputMatchResult(matchResult.toString())
     }
 
     private fun inputNumbers(): Numbers {
