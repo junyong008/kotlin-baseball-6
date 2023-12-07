@@ -4,7 +4,16 @@ import baseball.exception.NumbersException
 
 data class Numbers(private val values: List<Number>) {
     init {
+        checkSize()
+        checkDuplicate()
+    }
+
+    private fun checkSize() {
         require(values.size == SIZE_NUMBERS) { NumbersException.OUT_DIGIT.getDigit(SIZE_NUMBERS) }
+    }
+
+    private fun checkDuplicate() {
+        require(values.size == values.toSet().size) { NumbersException.DUPLICATE_NUMBER.message }
     }
 
     fun matchWith(otherNumbers: Numbers): MatchResult {
@@ -33,5 +42,9 @@ data class Numbers(private val values: List<Number>) {
             }
             return Numbers(numbers)
         }
+
+        fun from(input: List<String>): Numbers = Numbers(
+            input.map { Number.from(it) }
+        )
     }
 }

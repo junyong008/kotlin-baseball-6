@@ -17,5 +17,9 @@ data class Number(private val value: Int) {
             val randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER)
             return Number(randomNumber)
         }
+
+        fun from(input: String): Number = Number(
+            requireNotNull(input.toIntOrNull()) { NumberException.NOT_INTEGER.message }
+        )
     }
 }
