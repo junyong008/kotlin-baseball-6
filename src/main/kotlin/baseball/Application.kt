@@ -6,5 +6,5 @@ import baseball.view.OutputView
 
 fun main() {
     val baseballGameController = BaseballGameController(InputView(), OutputView())
-    baseballGameController.startGame()
+    baseballGameController.run()
 }

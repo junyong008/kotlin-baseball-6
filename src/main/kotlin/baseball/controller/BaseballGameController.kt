@@ -14,21 +14,24 @@ class BaseballGameController(
     private val computer = Computer()
     private var gameState = GameState.OVER
 
-    fun startGame() {
+    fun run() {
         outputView.outputGameStartMessage()
         gameState = GameState.START
 
-        while (gameState == GameState.START) {
-            computer.chooseNumbers()
-            while (gameState == GameState.START) {
-                val userNumbers = inputNumbers()
-                val matchResult = computer.matchNumbers(userNumbers)
-                outputView.outputMatchResult(matchResult.toString())
-                if (matchResult.isAllStrike()) break
-            }
-            outputView.outputGameOverMessage(Numbers.SIZE_NUMBERS)
-            gameState = GameState.from(inputIsRestart())
-        }
+        while (gameState == GameState.START) playGame()
+    }
+
+    private fun playGame() {
+        computer.chooseNumbers()
+        while (gameState == GameState.START) matchNumbers()
+        outputView.outputGameOverMessage(Numbers.SIZE_NUMBERS)
+        gameState = GameState.from(inputIsRestart())
+    }
+
+    private fun matchNumbers() {
+        val matchResult = computer.matchNumbers(inputNumbers())
+        outputView.outputMatchResult(matchResult.toString())
+        if (matchResult.isAllStrike()) gameState = GameState.OVER
     }
 
     private fun inputNumbers(): Numbers {
